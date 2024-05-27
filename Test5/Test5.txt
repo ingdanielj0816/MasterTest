@@ -1,0 +1,89 @@
+Tecnologías a Utilizar:
+Para construir una aplicación de comercio electrónico basada en arquitectura de microservicios, se recomienda utilizar 
+lenguajes como Node.js o Go para la construcción de los microservicios, junto con frameworks web como Express.js o Gin. 
+En cuanto a la base de datos, MongoDB es una opción adecuada para datos no estructurados, mientras que PostgreSQL es más 
+adecuado para datos estructurados. La contenerización con Docker facilita el despliegue y la orquestación de contenedores en 
+producción se puede hacer con Kubernetes.
+
+Organización de Archivos:
+Cada microservicio debe tener su propio directorio con una estructura clara que incluya carpetas para controladores, rutas, 
+servicios y middlewares. Además, se puede tener una carpeta compartida que contenga código compartido entre los microservicios, 
+como modelos de datos o funciones de utilidad. El gateway debe tener su propio directorio y encargarse del enrutamiento y 
+la proxying de solicitudes a los microservicios.
+
+Patrones de Diseño:
+El uso del patrón de diseño API Gateway facilita el enrutamiento de las solicitudes de los clientes a los microservicios 
+correspondientes, mientras que la implementación de un modelo de base de datos por servicio garantiza la autonomía y el aislamiento 
+de los datos entre servicios. Además, el uso de patrones como Circuit Breaker permite manejar fallos de forma elegante y evitar 
+la propagación de fallos en cascada.
+
+Uso de Docker y Docker Compose:
+Cada microservicio debe tener su propio Dockerfile para construir su imagen, y Docker Compose puede ser utilizado para definir 
+y ejecutar aplicaciones Docker con múltiples contenedores. Esto facilita el desarrollo y la prueba en entornos locales antes de pasar 
+a entornos de producción.
+
+Escalabilidad y Alta Disponibilidad:
+Diseñar los microservicios con la escalabilidad en mente es crucial, utilizando patrones como el escalado horizontal para manejar 
+aumentos repentinos en la carga. Además, herramientas como Kubernetes pueden ser utilizadas para orquestar y administrar los 
+contenedores en entornos de producción, lo que proporciona una alta disponibilidad y escalabilidad automática.
+
+Estructura de Archivos
+Esta estructura de archivos y patrones de diseño proporciona una base sólida para una aplicación basada en arquitectura de 
+microservicios, permitiendo un desarrollo y mantenimiento eficientes.
+
+
+
+
+ecommerce-microservices/
+├── auth-service/
+│   ├── src/
+│   │   ├── controllers/
+│   │   │   ├── authController.js
+│   │   ├── routes/
+│   │   │   ├── authRoutes.js
+│   │   ├── services/
+│   │   │   ├── authService.js
+│   │   ├── middlewares/
+│   │   │   ├── authMiddleware.js
+│   ├── Dockerfile
+│   ├── package.json
+├── product-service/
+│   ├── src/
+│   │   ├── controllers/
+│   │   │   ├── productController.js
+│   │   ├── routes/
+│   │   │   ├── productRoutes.js
+│   │   ├── services/
+│   │   │   ├── productService.js
+│   ├── Dockerfile
+│   ├── package.json
+├── order-service/
+│   ├── src/
+│   │   ├── controllers/
+│   │   │   ├── orderController.js
+│   │   ├── routes/
+│   │   │   ├── orderRoutes.js
+│   │   ├── services/
+│   │   │   ├── orderService.js
+│   ├── Dockerfile
+│   ├── package.json
+├── shared/
+│   ├── src/
+│   │   ├── models/
+│   │   │   ├── User.js
+│   │   │   ├── Product.js
+│   │   │   ├── Order.js
+│   ├── package.json
+├── gateway/
+│   ├── src/
+│   │   ├── routes/
+│   │   │   ├── gatewayRoutes.js
+│   │   ├── services/
+│   │   │   ├── authProxyService.js
+│   │   │   ├── productProxyService.js
+│   │   │   ├── orderProxyService.js
+│   ├── Dockerfile
+│   ├── package.json
+├── docker-compose.yml
+├── .gitignore
+├── README.md
